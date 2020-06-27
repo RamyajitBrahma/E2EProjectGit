@@ -44,11 +44,12 @@ public class LoginTC extends baseOR {
 		if(RunFlag.contains("Sign In")) {
 			
 			if(objExistence(homePage.signInButton(),"SignIn Button")) {
+				takeScreenShots("SignOnButton",driver);
 				homePage.signInButton().click();
 				log.info("Sign In Button clicked");
 				// listenersE2E.ExttestcaseReport.info("Sign In Button CLicked"); // was used when ran in Non Parallel mode
 				 listenersE2E.ThreadSafeExtentReport.get().info("Sign In Button CLicked");
-				 takeScreenShots("SignOnButton",driver);
+				 
 			}
 						
 			// enter email and passwird and click login
@@ -69,16 +70,17 @@ public class LoginTC extends baseOR {
 			//Validatijg if the title of the page is correct
 			//System.out.println(driver.getTitle());
 			if(driver.getTitle().contains("Rahul Shetty Academy")) {
-				Assert.assertEquals(driver.getTitle(),"Rahul Shetty Academy");
+				
 				listenersE2E.ThreadSafeExtentReport.get().pass("Correct title was displayed");
 				log.info("Correct title was displayed");
-
+				Assert.assertEquals(driver.getTitle(),"Rahul Shetty Academy");
 			}
 			else {
-				Assert.assertEquals(driver.getTitle(),"Rahul Shetty Academy");
+				
 				listenersE2E.ThreadSafeExtentReport.get().fail("Correct title was not displayed");
 				log.error("Correct title was not displayed");
 				takeScreenShots("correcttitle",driver);
+				Assert.assertEquals(driver.getTitle(),"Rahul Shetty Academy");
 			}
 			
 		}
